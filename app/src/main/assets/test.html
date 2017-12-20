@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>H5 And Android</title>
+    <script>
+//定义本地方法 效果提供给Android端调用 被调用后将获得参数值
+function callH5(data){
+　　document.getElementById("result").innerHTML="result success for Android to:"+data;
+}
+
+
+//定义本地点击事件 效果调用Android方法 传递参数给Android客服端
+function myOnclick(){
+　　document.getElementById("result").innerHTML="名字：" + myObj.getName() +  " \n 年龄:" + myObj.getAge() + " \n 性别：" + myObj.getSex();
+　　//调用android本地方法 调用对象由Android定义实例化，调用方法由Android提供 (具体对象名和方法待定，可变更)
+　　myObj.getClickListener().callAndroid("弹窗显示回调成功了～～～");
+}
+
+function jumpClick(){
+   myObj.getClickListener().callAndroid("我跳");
+}
+
+    </script>
+</head>
+<body>
+　　
+<button id="button" onclick="myOnclick()">点击调用Android方法</button>
+　　<p/>
+　　
+<div id="result">效果展示</div>
+<button id="jump" onclick="jumpClick()">点击跳转原生页面</button>
+</body>
+</html>
